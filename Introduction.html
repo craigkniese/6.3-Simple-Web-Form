@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <title>Team Introduction</title>
+    </head>
+    <body>
+        <div id="input" class="container vertical-center">
+            <form method="post" onsubmit="return validateInput();" class="form-horizontal">
+                <div class="center">
+                    <div class="form-group">
+                        <label class="control-label" for="name">Name:</label>
+                        <input id="name" name="name" type="text" class="form-control col-md-4">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="funFact">Fun Fact:</label>
+                        <input id="funFact" name="funFact" type="text" class="form-control col-md-6">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="submit" type="submit" value="Introduce" class="form-control col-md-2" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="result" class="container vertical-center">
+            <div class="center">
+                <div class="control-label">
+                    <label id="resultName" />
+                </div>
+
+                <div class="control-label">
+                    <label id="resultFunFact" />
+                </div>
+                <input id="reset" type="button" value="Reset" onclick="clearControls();" class="form-control col-md-2" />
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#result').hide();
+            });
+
+            function validateInput() {
+                if ($('#name').val().trim() == '') {
+                    alert('Please enter a name.');
+                    return false;
+                }
+
+                if ($('#funFact').val().trim() == '') {
+                    alert('Please enter a fun fact.');
+                    return false;
+                }
+
+                toggleInputResult();
+
+                $('#resultName').text('Name: ' + $('#name').val());
+                $('#resultFunFact').text('Fun Fact: ' + $('#funFact').val());
+                console.log('Name: ' + $('#name').val());
+                console.log('Fun Fact: ' + $('#funFact').val());
+
+                // return false to not clear console
+                return false;
+            }
+
+            function clearControls() {
+                $('#name').val('');
+                $('#funFact').val('');
+                $('#resultLabel').val('');
+
+                $('#result').hide();
+                $('#input').show();
+            }
+
+            function toggleInputResult() {
+                if ($('input').is(':visible')) {
+                    $('#input').hide();
+                    $('#result').show();
+                }
+                else {
+                    $('#input').show();
+                    $('#result').hide();
+                }
+            }
+        </script>
+
+        <style>
+            .center {
+                width: 50%;
+                margin: auto;
+            }
+        </style>
+    </body>
+</html>
